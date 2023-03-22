@@ -40,10 +40,24 @@ function toPlayGame() {
 		context.fillStyle = 'darkorange';
 		context.fillRect(cell.x, cell.y, cellSize - 1, cellSize - 1);
 
+		// an inspect - apple has not create in the same cell with the snake's body's cells
 		while (apple.x === cell.x || apple.y === cell.y) {
 			apple.x = getRandomNum(0, 30) * cellSize;
 			apple.y = getRandomNum(0, 30) * cellSize;
-		}
+		};
+
+		// snake pass throug the wall
+		if (cell.x >= canvas.width) {
+			cell.x = 0;
+		} else if (cell.x < 0) {
+			cell.x = canvas.width - cellSize;
+		};
+
+		if (cell.y >= canvas.height) {
+			cell.y = 0;
+		} else if (cell.y < 0) {
+			cell.y = canvas.height - cellSize;
+		};
 	};
 };
 requestAnimationFrame(toPlayGame);
