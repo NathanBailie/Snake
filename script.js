@@ -40,10 +40,10 @@ function toPlayGame() {
 		context.fillStyle = 'darkorange';
 		context.fillRect(cell.x, cell.y, cellSize - 1, cellSize - 1);
 
-		if (apple.x === cell.x || apple.y === cell.y) {
+		while (apple.x === cell.x || apple.y === cell.y) {
 			apple.x = getRandomNum(0, 30) * cellSize;
 			apple.y = getRandomNum(0, 30) * cellSize;
-		};
+		}
 	};
 };
 requestAnimationFrame(toPlayGame);
