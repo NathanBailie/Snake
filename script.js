@@ -18,6 +18,28 @@ let apple = {
 	y: getRandomNum(0, 30) * cellSize,
 };
 
+function toPlayGame() {
+	let { dir } = snake;
+	let head = snake.body[0];
+	let { body } = snake;
+
+	// slowing the speed of the game
+	requestAnimationFrame(toPlayGame);
+	if (++count < 4) {
+		return;
+	};
+	count = 0;
+
+	context.clearRect(0, 0, canvas.width, canvas.height);
+
+	for (let cell of snake.body) {
+		context.fillStyle = 'darkorange';
+		context.fillRect(cell.x, cell.y, cellSize - 1, cellSize - 1);
+	};
+};
+requestAnimationFrame(toPlayGame);
+
+
 document.addEventListener('keydown', (e) => {
 	if ((e.key === 'ArrowRight' ||
 		e.key === 'd' ||
