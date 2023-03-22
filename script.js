@@ -8,9 +8,9 @@ let count = 0;
 let snake = {
 	dir: 'right',
 	body: [
-		{ x: 119, y: 100 },
-		{ x: 119 - cellSize, y: 100 },
-		{ x: 119 - cellSize * 2, y: 100 },
+		{ x: 119, y: 119 },
+		{ x: 119 - cellSize, y: 119 },
+		{ x: 119 - cellSize * 2, y: 119 },
 	],
 };
 let apple = {
@@ -25,7 +25,7 @@ function toPlayGame() {
 
 	// slowing the speed of the game
 	requestAnimationFrame(toPlayGame);
-	if (++count < 4) {
+	if (++count < 5) {
 		return;
 	};
 	count = 0;
@@ -46,7 +46,7 @@ function toPlayGame() {
 			apple.y = getRandomNum(0, 30) * cellSize;
 		};
 
-		// snake pass throug the wall
+		// snake pass through the wall
 		if (cell.x >= canvas.width) {
 			cell.x = 0;
 		} else if (cell.x < 0) {
@@ -58,6 +58,24 @@ function toPlayGame() {
 		} else if (cell.y < 0) {
 			cell.y = canvas.height - cellSize;
 		};
+	};
+
+	// the snake's movement
+	if (dir === 'right') {
+		body.unshift({ x: head.x + cellSize, y: head.y })
+		body.pop();
+	};
+	if (dir === 'left') {
+		body.unshift({ x: head.x - cellSize, y: head.y })
+		body.pop();
+	};
+	if (dir === 'up') {
+		body.unshift({ x: head.x, y: head.y - cellSize })
+		body.pop();
+	};
+	if (dir === 'down') {
+		body.unshift({ x: head.x, y: head.y + cellSize })
+		body.pop();
 	};
 };
 requestAnimationFrame(toPlayGame);
