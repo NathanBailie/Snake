@@ -19,98 +19,123 @@ let apple = {
 };
 let score = 0;
 
+
 function toPlayGame() {
 	let { dir } = snake;
 	let head = snake.body[0];
 	let { body } = snake;
-
 	// slowing the speed of the game
 	requestAnimationFrame(toPlayGame);
 	if (++count < 4) {
 		return;
 	};
 	count = 0;
-
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
-	// apple painting
-	context.fillStyle = 'orangered';
-	context.fillRect(apple.x, apple.y, cellSize, cellSize);
-
-	for (let cell of snake.body) {
+	drawFood();
+	body.forEach((cell, index) => {
 		context.fillStyle = 'darkorange';
 		context.fillRect(cell.x, cell.y, cellSize - 1, cellSize - 1);
 
-		// an inspect - apple has not create in the same cell with the snake's body's cells
-		while (apple.x === cell.x && apple.y === cell.y) {
-			apple.x = getRandomNum(0, 30) * cellSize;
-			apple.y = getRandomNum(0, 30) * cellSize;
+		if (index === 0 && (cell.x === apple.x && cell.y === apple.y)) {
 			score += 1;
 		};
-
-		// snake pass through the wall
-		if (cell.x >= canvas.width) {
-			cell.x = 0;
-		} else if (cell.x < 0) {
-			cell.x = canvas.width - cellSize;
+		if (index !== 0 && (cell.x === apple.x && cell.y === apple.y)) {
+			apple.x = getRandomNum(0, 29) * cellSize;
+			apple.y = getRandomNum(0, 29) * cellSize;
 		};
+		toMoveThroughTheWall(cell);
 
-		if (cell.y >= canvas.height) {
-			cell.y = 0;
-		} else if (cell.y < 0) {
-			cell.y = canvas.height - cellSize;
-		};
-	};
 
-	// the snake's movement
-	if (dir === 'right') {
-		body.unshift({ x: head.x + cellSize, y: head.y })
-		body.pop();
-	};
-	if (dir === 'left') {
-		body.unshift({ x: head.x - cellSize, y: head.y })
-		body.pop();
-	};
-	if (dir === 'up') {
-		body.unshift({ x: head.x, y: head.y - cellSize })
-		body.pop();
-	};
-	if (dir === 'down') {
-		body.unshift({ x: head.x, y: head.y + cellSize })
-		body.pop();
-	};
+	});
+	// this function draws the snake's movement and gives to it's body one more cell when it eats the apple
+	toDrawTheMovement(snake);
 };
 requestAnimationFrame(toPlayGame);
 
-
-document.addEventListener('keydown', (e) => {
-	if ((e.key === 'ArrowRight' ||
-		e.key === 'd' ||
-		e.key === 'в') &&
-		snake.dir !== 'left') {
-		snake.dir = 'right';
-	};
-	if ((e.key === 'ArrowLeft' ||
-		e.key === 'a' ||
-		e.key === 'ф') &&
-		snake.dir !== 'right') {
-		snake.dir = 'left';
-	};
-	if ((e.key === 'ArrowUp' ||
-		e.key === 'w' ||
-		e.key === 'ц') &&
-		snake.dir !== 'down') {
-		snake.dir = 'up';
-	};
-	if ((e.key === 'ArrowDown' ||
-		e.key === 's' ||
-		e.key === 'ы') &&
-		snake.dir !== 'up') {
-		snake.dir = 'down';
-	};
-});
+// to change the direction of snake's moving when we press the button
+toChangeTheDir(snake);
 
 
 function getRandomNum(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+function drawFood() {
+	context.fillStyle = 'orangered';
+	context.fillRect(apple.x, apple.y, cellSize - 1, cellSize - 1);
+};
+
+function toMoveThroughTheWall(cell) {
+	if (cell.x >= canvas.width) {
+		cell.x = 0;
+	} else if (cell.x < 0) {
+		cell.x = canvas.width - cellSize;
+	};
+
+	if (cell.y >= canvas.height) {
+		cell.y = 0;
+	} else if (cell.y < 0) {
+		cell.y = canvas.height - cellSize;
+	};
+};
+
+function toDrawTheMovement(snake) {
+	let { body, dir } = snake;
+	let head = snake.body[0];
+	toMove(body, head, dir);
+	body.pop();
+
+	// when the snake eats an apple, she takes one more cell to her body
+	if (head.x === apple.x && head.y === apple.y) {
+		toDrawTheMoving(body, head, dir);
+	};
+};
+
+function toMove(body, head, dir) {
+	switch (dir) {
+		case 'right':
+			body.unshift({ x: head.x + cellSize, y: head.y });
+			break;
+		case 'left':
+			body.unshift({ x: head.x - cellSize, y: head.y });
+			break;
+		case 'up':
+			body.unshift({ x: head.x, y: head.y - cellSize });
+			break;
+		case 'down':
+			body.unshift({ x: head.x, y: head.y + cellSize });
+			break;
+		default:
+			break;
+	};
+};
+
+function toChangeTheDir(snake) {
+	document.addEventListener('keydown', (e) => {
+		if ((e.key === 'ArrowRight' ||
+			e.key === 'd' ||
+			e.key === 'в') &&
+			snake.dir !== 'left') {
+			snake.dir = 'right';
+		};
+		if ((e.key === 'ArrowLeft' ||
+			e.key === 'a' ||
+			e.key === 'ф') &&
+			snake.dir !== 'right') {
+			snake.dir = 'left';
+		};
+		if ((e.key === 'ArrowUp' ||
+			e.key === 'w' ||
+			e.key === 'ц') &&
+			snake.dir !== 'down') {
+			snake.dir = 'up';
+		};
+		if ((e.key === 'ArrowDown' ||
+			e.key === 's' ||
+			e.key === 'ы') &&
+			snake.dir !== 'up') {
+			snake.dir = 'down';
+		};
+	});
+}
