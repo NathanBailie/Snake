@@ -17,6 +17,7 @@ let apple = {
 	x: getRandomNum(0, 30) * cellSize,
 	y: getRandomNum(0, 30) * cellSize,
 };
+let score = 0;
 
 function toPlayGame() {
 	let { dir } = snake;
@@ -44,6 +45,8 @@ function toPlayGame() {
 		while (apple.x === cell.x && apple.y === cell.y) {
 			apple.x = getRandomNum(0, 30) * cellSize;
 			apple.y = getRandomNum(0, 30) * cellSize;
+			score += 1;
+			console.log(score)
 		};
 
 		// snake pass through the wall
