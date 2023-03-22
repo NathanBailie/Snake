@@ -81,18 +81,17 @@ function toMoveThroughTheWall(cell) {
 };
 
 function toDrawTheMovement(snake) {
-	let { body, dir } = snake;
 	let head = snake.body[0];
-	toMove(body, head, dir);
-	body.pop();
-
+	toMove(snake, head);
+	snake.body.pop();
 	// when the snake eats an apple, she takes one more cell to her body
 	if (head.x === apple.x && head.y === apple.y) {
-		toDrawTheMoving(body, head, dir);
+		toMove(snake, head);
 	};
 };
 
-function toMove(body, head, dir) {
+function toMove(snake, head) {
+	let { body, dir } = snake;
 	switch (dir) {
 		case 'right':
 			body.unshift({ x: head.x + cellSize, y: head.y });
@@ -118,24 +117,28 @@ function toChangeTheDir(snake) {
 			e.key === 'в') &&
 			snake.dir !== 'left') {
 			snake.dir = 'right';
+			toDrawTheMovement(snake);
 		};
 		if ((e.key === 'ArrowLeft' ||
 			e.key === 'a' ||
 			e.key === 'ф') &&
 			snake.dir !== 'right') {
 			snake.dir = 'left';
+			toDrawTheMovement(snake);
 		};
 		if ((e.key === 'ArrowUp' ||
 			e.key === 'w' ||
 			e.key === 'ц') &&
 			snake.dir !== 'down') {
 			snake.dir = 'up';
+			toDrawTheMovement(snake);
 		};
 		if ((e.key === 'ArrowDown' ||
 			e.key === 's' ||
 			e.key === 'ы') &&
 			snake.dir !== 'up') {
 			snake.dir = 'down';
+			toDrawTheMovement(snake);
 		};
 	});
-}
+};
