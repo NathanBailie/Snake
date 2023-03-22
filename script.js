@@ -18,6 +18,9 @@ let apple = {
 	y: getRandomNum(0, 29) * cellSize,
 };
 let score = 0;
+let condition = 'game';
+let animationId1;
+let animationId2;
 
 
 function toPlayGame() {
@@ -25,7 +28,7 @@ function toPlayGame() {
 	let head = snake.body[0];
 	let { body } = snake;
 	// slowing the speed of the game
-	requestAnimationFrame(toPlayGame);
+	animationId1 = requestAnimationFrame(toPlayGame);
 	if (++count < 4) {
 		return;
 	};
@@ -40,18 +43,38 @@ function toPlayGame() {
 		if (index === 0 && (cell.x === apple.x && cell.y === apple.y)) {
 			score += 1;
 		};
+
 		if (index !== 0 && (cell.x === apple.x && cell.y === apple.y)) {
 			apple.x = getRandomNum(0, 29) * cellSize;
 			apple.y = getRandomNum(0, 29) * cellSize;
 		};
+
+		if (index !== 0 && index !== 1 && head.x === cell.x && head.y === cell.y) {
+			condition = 'finish';
+		};
+
 		toMoveThroughTheWall(cell);
-
-
 	});
+
+
 	// this function draws the snake's movement and gives to it's body one more cell when it eats the apple
 	toDrawTheMovement(snake);
 };
-requestAnimationFrame(toPlayGame);
+
+
+if (condition === 'game') {
+	animationId2 = requestAnimationFrame(toPlayGame);
+}
+
+// finish the animations
+let interval = setInterval(() => {
+	if (condition === 'finish') {
+		cancelAnimationFrame(animationId1);
+		cancelAnimationFrame(animationId2);
+		clearInterval(interval);
+	};
+}, 300);
+
 
 // to change the direction of snake's moving when we press the button
 toChangeTheDir(snake);
