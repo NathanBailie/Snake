@@ -25,7 +25,7 @@ function toPlayGame() {
 
 	// slowing the speed of the game
 	requestAnimationFrame(toPlayGame);
-	if (++count < 5) {
+	if (++count < 4) {
 		return;
 	};
 	count = 0;
@@ -34,14 +34,14 @@ function toPlayGame() {
 
 	// apple painting
 	context.fillStyle = 'orangered';
-	context.fillRect(apple.x, apple.y, cellSize - 1, cellSize - 1);
+	context.fillRect(apple.x, apple.y, cellSize, cellSize);
 
 	for (let cell of snake.body) {
 		context.fillStyle = 'darkorange';
 		context.fillRect(cell.x, cell.y, cellSize - 1, cellSize - 1);
 
 		// an inspect - apple has not create in the same cell with the snake's body's cells
-		while (apple.x === cell.x || apple.y === cell.y) {
+		while (apple.x === cell.x && apple.y === cell.y) {
 			apple.x = getRandomNum(0, 30) * cellSize;
 			apple.y = getRandomNum(0, 30) * cellSize;
 		};
