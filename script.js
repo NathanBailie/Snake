@@ -14,8 +14,8 @@ let snake = {
 	],
 };
 let apple = {
-	x: getRandomNum(0, 30) * cellSize,
-	y: getRandomNum(0, 30) * cellSize,
+	x: getRandomNum(0, 29) * cellSize,
+	y: getRandomNum(0, 29) * cellSize,
 };
 let score = 0;
 
@@ -46,7 +46,6 @@ function toPlayGame() {
 			apple.x = getRandomNum(0, 30) * cellSize;
 			apple.y = getRandomNum(0, 30) * cellSize;
 			score += 1;
-			console.log(score)
 		};
 
 		// snake pass through the wall
