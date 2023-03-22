@@ -32,9 +32,18 @@ function toPlayGame() {
 
 	context.clearRect(0, 0, canvas.width, canvas.height);
 
+	// apple painting
+	context.fillStyle = 'orangered';
+	context.fillRect(apple.x, apple.y, cellSize - 1, cellSize - 1);
+
 	for (let cell of snake.body) {
 		context.fillStyle = 'darkorange';
 		context.fillRect(cell.x, cell.y, cellSize - 1, cellSize - 1);
+
+		if (apple.x === cell.x || apple.y === cell.y) {
+			apple.x = getRandomNum(0, 30) * cellSize;
+			apple.y = getRandomNum(0, 30) * cellSize;
+		};
 	};
 };
 requestAnimationFrame(toPlayGame);
