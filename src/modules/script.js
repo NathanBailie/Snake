@@ -5,6 +5,7 @@ let context = canvas.getContext('2d');
 let scoreWindow = document.querySelector('.scoreWindow');
 let scoreText = document.querySelector('.scoreWindow p');
 let restartButton = document.querySelector('.scoreWindow__restart');
+let timerWindow = document.querySelector('.timerWindow');
 
 let cellSize = 17;
 let count = 0;
@@ -21,9 +22,13 @@ let apple = {
 	y: getRandomNum(0, 29) * cellSize,
 };
 let score = 0;
-let condition = 'game';
 let animationId1;
 let animationId2;
+
+let timer = 3;
+let timerId;
+toCreateBasicData();
+toStartPlaying();
 
 function toPlayGame() {
 	let { dir } = snake;
@@ -54,7 +59,6 @@ function toPlayGame() {
 		if (index !== 0 && index !== 1 && head.x === cell.x && head.y === cell.y
 			// || score === 1
 		) {
-			condition = 'finish';
 			cancelAnimationFrame(animationId1);
 			cancelAnimationFrame(animationId2);
 			scoreText.textContent = score;
@@ -68,9 +72,6 @@ function toPlayGame() {
 };
 toChangeTheDir(snake);
 
-if (condition === 'game') {
-	animationId2 = requestAnimationFrame(toPlayGame);
-};
 
 
 function getRandomNum(min, max) {
@@ -159,10 +160,18 @@ function toChangeTheDir(snake) {
 };
 
 restartButton.addEventListener('click', () => {
+	toCreateBasicData();
+	toStartPlaying();
+	toChangeTheDir(snake);
+	scoreWindow.style.transform = 'translate(-50%, 100%)';
+});
+
+function toCreateBasicData() {
 	context.clearRect(0, 0, canvas.width, canvas.height);
 	score = 0;
-	scoreWindow.style.transform = 'translate(-50%, 100%)';
 	count = 0;
+	timer = 3;
+	timerWindow.textContent = '';
 	snake = {
 		dir: 'right',
 		body: [
@@ -175,7 +184,18 @@ restartButton.addEventListener('click', () => {
 		x: getRandomNum(0, 29) * cellSize,
 		y: getRandomNum(0, 29) * cellSize,
 	};
-	condition = 'game';
-	animationId2 = requestAnimationFrame(toPlayGame);
-	toChangeTheDir(snake);
-});
+	timerWindow.style.display = 'flex';
+};
+
+function toStartPlaying() {
+	timerId = setInterval(() => {
+		if (timer >= 1) {
+			timerWindow.textContent = timer;
+			timer--;
+		} else {
+			clearInterval(timerId);
+			timerWindow.style.display = 'none';
+			animationId2 = requestAnimationFrame(toPlayGame);
+		}
+	}, 1000);
+};
