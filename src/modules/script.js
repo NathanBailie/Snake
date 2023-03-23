@@ -7,27 +7,17 @@ let scoreText = document.querySelector('.scoreWindow p');
 let restartButton = document.querySelector('.scoreWindow__restart');
 let timerWindow = document.querySelector('.timerWindow');
 
-let cellSize = 17;
-let count = 0;
-let snake = {
-	dir: 'right',
-	body: [
-		{ x: 119, y: 119 },
-		{ x: 119 - cellSize, y: 119 },
-		{ x: 119 - cellSize * 2, y: 119 },
-	],
-};
-let apple = {
-	x: getRandomNum(0, 29) * cellSize,
-	y: getRandomNum(0, 29) * cellSize,
-};
-let score = 0;
+let cellSize;
+let count;
 let animationId1;
 let animationId2;
-
-let timer = 3;
+let score;
+let timer;
 let timerId;
+let snake;
+let apple;
 toCreateBasicData();
+
 toStartPlaying();
 
 function toPlayGame() {
@@ -73,15 +63,24 @@ function toPlayGame() {
 toChangeTheDir(snake);
 
 
-
 function getRandomNum(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 function drawFood() {
 	context.fillStyle = 'orangered';
-	context.fillRect(apple.x, apple.y, cellSize - 1, cellSize - 1);
+	// square
+	// context.fillRect(apple.x, apple.y, cellSize - 1, cellSize - 1);
+
+	// circle
+	const radius = cellSize / 2 - 1;
+	const x = apple.x + radius;
+	const y = apple.y + radius;
+	context.beginPath();
+	context.arc(x, y, radius, 0, getRadians(360));
+	context.fill();
 };
+
 
 function toMoveThroughTheWall(cell) {
 	if (cell.x >= canvas.width) {
@@ -168,8 +167,9 @@ restartButton.addEventListener('click', () => {
 
 function toCreateBasicData() {
 	context.clearRect(0, 0, canvas.width, canvas.height);
-	score = 0;
+	cellSize = 17;
 	count = 0;
+	score = 0;
 	timer = 3;
 	timerWindow.textContent = '';
 	snake = {
@@ -198,4 +198,8 @@ function toStartPlaying() {
 			animationId2 = requestAnimationFrame(toPlayGame);
 		}
 	}, 1000);
+};
+
+function getRadians(degrees) {
+	return (Math.PI / 180) * degrees;
 };
