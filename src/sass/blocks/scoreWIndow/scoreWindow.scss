@@ -1,0 +1,122 @@
+.scoreWindow {
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	border: 2px ridge white;
+	border-radius: 15px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 100%);
+	background: rgba(0, 0, 0, 0.5);
+	padding: 10px;
+	user-select: none;
+	transition: transform 0.6s linear;
+
+	h2 {
+		margin-top: 30px;
+		color: white;
+		font-size: 36px;
+		margin-bottom: 15px;
+		text-align: center;
+	}
+
+	p {
+		color: aquamarine;
+		font-size: 40px;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	&__back {
+		position: relative;
+		cursor: pointer;
+		font-size: 20px;
+		font-weight: bold;
+		font-style: italic;
+		background: none;
+		color: #e6e9ba;
+		border: none;
+		transition: all 0.3s linear;
+		display: flex;
+		align-items: center;
+
+		&:before {
+			content: "\21D0";
+			opacity: 0;
+			position: absolute;
+			left: 0;
+			color: #53e74a;
+			font-size: 22px;
+			line-height: 22px;
+			text-indent: 0;
+		}
+
+		&:hover {
+			text-indent: 23px;
+			transform: scale(1.1);
+			color: #e7e9ca;
+
+			&:before {
+				opacity: 1;
+				text-indent: 0px;
+				color: #16ef09;
+			}
+		}
+
+		&:active {
+			transform: scale(1);
+			color: #d2d5a2;
+			transition: all 0.1s linear;
+
+			&:before {
+				color: #15e309;
+			}
+		}
+	}
+
+	&__restart {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		margin: 35px auto 0;
+		font-size: 20px;
+		padding: 5px 10px;
+		border-radius: 15px;
+		transition: all 0.4s linear;
+		border: none;
+
+		&:before {
+			content: '';
+			background: url('../icons/play.png') center center / cover no-repeat;
+			display: block;
+			opacity: 0;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 25px;
+			height: 25px;
+			transition: all 0.3s linear;
+		}
+
+		&:hover {
+			transform: scale(1.05);
+			transition: all 0.3s linear;
+			border-radius: 20px 5px 20px 5px;
+			color: rgba(0, 0, 0, 0);
+			box-shadow: 0px 0px 2px 1px black;
+
+			&:before {
+				opacity: 1;
+			}
+		}
+
+		&:active {
+			transform: scale(1);
+			transition: all 0.1s linear;
+			box-shadow: none;
+		}
+	}
+}

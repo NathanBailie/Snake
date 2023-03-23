@@ -1,0 +1,20 @@
+@import 'libs/bootstrap-reboot.min';
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+html {
+	background: #363636;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+// blocks
+@import "blocks/gameWraper/gameWraper";
+@import "blocks/scoreWindow/scoreWindow";

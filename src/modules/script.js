@@ -2,6 +2,9 @@
 
 let canvas = document.querySelector('canvas');
 let context = canvas.getContext('2d');
+let scoreWindow = document.querySelector('.scoreWindow');
+let scoreText = document.querySelector('.scoreWindow p');
+let restartButton = document.querySelector('.scoreWindow__restart');
 
 let cellSize = 17;
 let count = 0;
@@ -22,12 +25,11 @@ let condition = 'game';
 let animationId1;
 let animationId2;
 
-
 function toPlayGame() {
 	let { dir } = snake;
 	let head = snake.body[0];
 	let { body } = snake;
-	// slowing the speed of the game
+
 	animationId1 = requestAnimationFrame(toPlayGame);
 	if (++count < 4) {
 		return;
@@ -49,26 +51,26 @@ function toPlayGame() {
 			apple.y = getRandomNum(0, 29) * cellSize;
 		};
 
-		// if the snake bites itself, the game is finishes
-		if (index !== 0 && index !== 1 && head.x === cell.x && head.y === cell.y) {
+		if (index !== 0 && index !== 1 && head.x === cell.x && head.y === cell.y
+			// || score === 1
+		) {
 			condition = 'finish';
 			cancelAnimationFrame(animationId1);
 			cancelAnimationFrame(animationId2);
+			scoreText.textContent = score;
+			scoreWindow.style.transform = 'translate(-50%, -50%)';
 		};
 
 		toMoveThroughTheWall(cell);
 	});
 
-	// this function draws the snake's movement and gives to it's body one more cell when it eats the apple
 	toDrawTheMovement(snake);
 };
+toChangeTheDir(snake);
 
 if (condition === 'game') {
 	animationId2 = requestAnimationFrame(toPlayGame);
 };
-
-// to change the direction of snake's moving when we press the button
-toChangeTheDir(snake);
 
 
 function getRandomNum(min, max) {
@@ -98,7 +100,6 @@ function toDrawTheMovement(snake) {
 	let head = snake.body[0];
 	toMove(snake, head);
 	snake.body.pop();
-	// when the snake eats an apple, she takes one more cell to her body
 	if (head.x === apple.x && head.y === apple.y) {
 		toMove(snake, head);
 	};
@@ -156,3 +157,25 @@ function toChangeTheDir(snake) {
 		};
 	});
 };
+
+restartButton.addEventListener('click', () => {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	score = 0;
+	scoreWindow.style.transform = 'translate(-50%, 100%)';
+	count = 0;
+	snake = {
+		dir: 'right',
+		body: [
+			{ x: 119, y: 119 },
+			{ x: 119 - cellSize, y: 119 },
+			{ x: 119 - cellSize * 2, y: 119 },
+		],
+	};
+	apple = {
+		x: getRandomNum(0, 29) * cellSize,
+		y: getRandomNum(0, 29) * cellSize,
+	};
+	condition = 'game';
+	animationId2 = requestAnimationFrame(toPlayGame);
+	toChangeTheDir(snake);
+});
