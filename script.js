@@ -49,32 +49,23 @@ function toPlayGame() {
 			apple.y = getRandomNum(0, 29) * cellSize;
 		};
 
+		// if the snake bites itself, the game is finishes
 		if (index !== 0 && index !== 1 && head.x === cell.x && head.y === cell.y) {
 			condition = 'finish';
+			cancelAnimationFrame(animationId1);
+			cancelAnimationFrame(animationId2);
 		};
 
 		toMoveThroughTheWall(cell);
 	});
 
-
 	// this function draws the snake's movement and gives to it's body one more cell when it eats the apple
 	toDrawTheMovement(snake);
 };
 
-
 if (condition === 'game') {
 	animationId2 = requestAnimationFrame(toPlayGame);
-}
-
-// finish the animations
-let interval = setInterval(() => {
-	if (condition === 'finish') {
-		cancelAnimationFrame(animationId1);
-		cancelAnimationFrame(animationId2);
-		clearInterval(interval);
-	};
-}, 300);
-
+};
 
 // to change the direction of snake's moving when we press the button
 toChangeTheDir(snake);
