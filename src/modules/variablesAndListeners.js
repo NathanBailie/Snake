@@ -4,12 +4,13 @@ let canvas = document.querySelector('canvas');
 let context = canvas.getContext('2d');
 let scoreWindow = document.querySelector('.scoreWindow');
 let scoreText = document.querySelector('.scoreWindow p');
+let startButton = document.querySelector('.startWindow__startButton');
 let backButton = document.querySelector('.scoreWindow__back');
 let restartButton = document.querySelector('.scoreWindow__restart');
 let timerWindow = document.querySelector('.timerWindow');
-let mainWraper = document.querySelector('.mainWraper');
-let startButton = document.querySelector('.startWindow__startButton');
 let container = document.querySelector('.container');
+let mainWraper = document.querySelector('.mainWraper');
+
 
 let cellSize;
 let count;
@@ -23,7 +24,10 @@ let apple;
 // from basicData.js - creating the basic data
 toCreateTheBasicData();
 
-// from toStartPlaying.js - starts the timer and then the game
+// from StartWindowBG.js - add one of images to the start window's background
+toChangeStartWindowBG();
+
+
 // toStartPlaying();
 
 restartButton.addEventListener('click', () => {
@@ -44,4 +48,5 @@ backButton.addEventListener('click', () => {
 	setTimeout(() => {
 		scoreWindow.style.transform = 'translate(-50%, 100%)';
 	}, 600);
+	toChangeStartWindowBG();
 });

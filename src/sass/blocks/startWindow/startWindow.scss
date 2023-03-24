@@ -2,15 +2,15 @@
 	width: 510px;
 	height: 510px;
 	padding: 15px;
-	border-radius: 15px;
 
 	h2 {
 		text-align: center;
 		margin-top: 100px;
-		font-size: 62px;
+		font-size: 72px;
 		font-family: cursive;
 		font-weight: bold;
 		color: #0400ff;
+		text-shadow: 3px 3px 1px #8673d3;
 		letter-spacing: 3px;
 
 	}
@@ -23,17 +23,20 @@
 		padding: 5px 15px;
 		border: none;
 		background: none;
-		font-size: 32px;
+		font-size: 36px;
 		transition: all 0.1s linear;
 		cursor: pointer;
+		color: #ffffe0;
 
 		&:hover {
 			transform: scale(1.05);
 			text-decoration: underline;
+			color: #ffffff;
 		}
 
 		&:active {
 			transform: scale(1);
+			color: #fff0d0;
 		}
 	}
 }
