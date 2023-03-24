@@ -4,8 +4,12 @@ let canvas = document.querySelector('canvas');
 let context = canvas.getContext('2d');
 let scoreWindow = document.querySelector('.scoreWindow');
 let scoreText = document.querySelector('.scoreWindow p');
+let backButton = document.querySelector('.scoreWindow__back');
 let restartButton = document.querySelector('.scoreWindow__restart');
 let timerWindow = document.querySelector('.timerWindow');
+let mainWraper = document.querySelector('.mainWraper');
+let startButton = document.querySelector('.startWindow__startButton');
+let container = document.querySelector('.container');
 
 let cellSize;
 let count;
@@ -25,5 +29,19 @@ toCreateTheBasicData();
 restartButton.addEventListener('click', () => {
 	toCreateTheBasicData();
 	toStartPlaying();
-	scoreWindow.style.transform = 'translate(-50%, 100%)';
+});
+
+startButton.addEventListener('click', () => {
+	toCreateTheBasicData();
+	toStartPlaying();
+	mainWraper.style.transform = 'translateX(-50%)';
+});
+
+backButton.addEventListener('click', () => {
+	toCreateTheBasicData();
+	mainWraper.style.transform = 'translateX(0)';
+	container.style.boxShadow = '0 0 5px 2px #b9ad25';
+	setTimeout(() => {
+		scoreWindow.style.transform = 'translate(-50%, 100%)';
+	}, 600);
 });

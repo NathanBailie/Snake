@@ -16,6 +16,10 @@ html {
 }
 
 // blocks
-@import "blocks/gameWraper/gameWraper";
+@import "blocks/container/container";
+@import "blocks/wrapers/mainWraper";
+@import "blocks/wrapers/gameWraper";
+@import "blocks/wrapers/startWindowWraper";
+@import "blocks/startWindow/startWindow";
 @import "blocks/scoreWindow/scoreWindow";
 @import "blocks/timerWindow/timerWindow";
