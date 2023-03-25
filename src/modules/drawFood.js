@@ -4,7 +4,7 @@ function drawFood() {
 	// context.fillRect(apple.x, apple.y, cellSize - 1, cellSize - 1);
 
 	// circle
-	const radius = cellSize / 2 - 1;
+	const radius = cellSize / 2;
 	const x = apple.x + radius;
 	const y = apple.y + radius;
 	context.beginPath();

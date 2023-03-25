@@ -27,7 +27,7 @@ function game() {
 		};
 
 		if (index !== 0 && index !== 1 && head.x === cell.x && head.y === cell.y
-			|| score === 1
+			// || score === 1
 		) {
 			cancelAnimationFrame(animationId1);
 			cancelAnimationFrame(animationId2);

@@ -10,6 +10,8 @@ let restartButton = document.querySelector('.scoreWindow__restart');
 let timerWindow = document.querySelector('.timerWindow');
 let container = document.querySelector('.container');
 let mainWraper = document.querySelector('.mainWraper');
+// let startWindowWraper = document.querySelector('.startWindowWraper');
+let settingsButton = document.querySelector('.startWindow__settingsButton')
 
 
 let cellSize;
@@ -26,7 +28,6 @@ toCreateTheBasicData();
 
 // from StartWindowBG.js - add one of images to the start window's background
 toChangeStartWindowBG();
-
 
 // toStartPlaying();
 
@@ -49,4 +50,8 @@ backButton.addEventListener('click', () => {
 		scoreWindow.style.transform = 'translate(-50%, 100%)';
 	}, 600);
 	toChangeStartWindowBG();
+});
+
+settingsButton.addEventListener('click', () => {
+	// startWindowWraper.style.transform = 'translateY(-100%)';
 });

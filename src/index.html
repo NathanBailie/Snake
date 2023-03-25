@@ -14,16 +14,96 @@
 		<div class="mainWraper">
 			<div class="startWindowWraper">
 				<div class="startWindow">
-					<!-- <h2>Welcome to the "<span> -->
 					<h2>Snake</h2>
-					<!-- Snake -->
-					<!-- </span>" game</h2> -->
 					<button class="startWindow__startButton">Start</button>
+					<button class="startWindow__settingsButton">Settings</button>
+				</div>
+
+				<div class="settingsWindow">
+					<h2>Settings</h2>
+
+					<div class="settingsWraper">
+						<div class="settingsWraper__settingName">
+							<h3 title="Turn the sound on or off in the game">Sound:</h3>
+						</div>
+						<div class="settingsWraper__settingItems one customCheckbox">
+							<div class="customCheckbox">
+								<input type="checkbox" id="soundCheckbox">
+								<label for="soundCheckbox"></label>
+							</div>
+						</div>
+					</div>
+
+					<div class="settingsWraper">
+						<div class="settingsWraper__settingName">
+							<h3 title="Chose the variant of the sound">Sounds:</h3>
+						</div>
+						<div class="settingsWraper__settingItems five sounds">
+							<div>1</div>
+							<div>2</div>
+							<div>3</div>
+							<div>4</div>
+							<div>5</div>
+						</div>
+					</div>
+
+					<div class="settingsWraper">
+						<div class="settingsWraper__settingName">
+							<h3 title="Background of the playing field">Field color:</h3>
+						</div>
+						<div class="settingsWraper__settingItems five fieldColor">
+							<div title="Darkgrey"></div>
+							<div title="Darkblue - Blue"></div>
+							<div title="Light violet"></div>
+							<div title="Green - Yellow"></div>
+							<div title="Red - Blue"></div>
+						</div>
+					</div>
+
+					<div class="settingsWraper">
+						<div class="settingsWraper__settingName">
+							<h3 title="Snake color">Snake color:</h3>
+						</div>
+						<div class="settingsWraper__settingItems five snakeColor">
+							<div title="Darkorange"></div>
+							<div title="LimeGreen"></div>
+							<div title="Aqua"></div>
+							<div title="Gold"></div>
+							<div title="Snow"></div>
+						</div>
+					</div>
+
+					<div class="settingsWraper">
+						<div class="settingsWraper__settingName">
+							<h3 title="Food color">Food color:</h3>
+						</div>
+						<div class="settingsWraper__settingItems five foodColor">
+							<div title="Orangered"></div>
+							<div title="Khaki"></div>
+							<div title="SpringGreen"></div>
+							<div title="DeepSkyBlue"></div>
+							<div title="HotPink"></div>
+						</div>
+					</div>
+
+					<div class="settingsWraper">
+						<div class="settingsWraper__settingName">
+							<h3 title="Food type">Food type:</h3>
+						</div>
+						<div class="settingsWraper__settingItems two foodType">
+							<div title="The food will look like square">Square</div>
+							<div title="The food will look like circle">Circle</div>
+						</div>
+					</div>
+
+					<button class="settingsWindow__okButton">Ok</button>
 				</div>
 			</div>
 
+
 			<div class="gameWraper">
 				<canvas width="510" height="510"></canvas>
+
 				<div class="scoreWindow">
 					<button class="scoreWindow__back">Menu</button>
 					<h2>Your score</h2>
@@ -32,6 +112,7 @@
 						Restart
 					</button>
 				</div>
+
 				<div class="timerWindow"></div>
 			</div>
 		</div>

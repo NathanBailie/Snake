@@ -15,16 +15,17 @@
 
 	}
 
-	&__startButton {
+	&__startButton,
+	&__settingsButton {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		margin: 60px auto 0;
-		padding: 5px 15px;
-		border: none;
+		padding: 0px 15px;
 		background: none;
 		font-size: 36px;
+		line-height: 46px;
 		transition: all 0.1s linear;
+		border: none;
 		cursor: pointer;
 		color: #ffffe0;
 
@@ -38,5 +39,13 @@
 			transform: scale(1);
 			color: #fff0d0;
 		}
+	}
+
+	&__startButton {
+		margin: 60px auto 0;
+	}
+
+	&__settingsButton {
+		margin: 0 auto 0;
 	}
 }

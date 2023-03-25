@@ -1,15 +1,15 @@
 function toDrawTheMovement() {
-	let head = snake.body[0];
-	toMove(snake, head);
+	let { body, dir } = snake;
+	let head = body[0];
+	toMove(head, body, dir);
 	snake.body.pop();
 	if (head.x === apple.x && head.y === apple.y) {
-		toMove(snake, head);
+		toMove(head, body, dir);
 	};
 };
 
-function toMove(snake) {
-	let { body, dir } = snake;
-	let head = snake.body[0];
+function toMove(head, body, dir) {
+
 	switch (dir) {
 		case 'right':
 			body.unshift({ x: head.x + cellSize, y: head.y });
