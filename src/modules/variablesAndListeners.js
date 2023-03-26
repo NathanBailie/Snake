@@ -75,7 +75,6 @@ backButton.addEventListener('click', () => {
 	setTimeout(() => {
 		scoreWindow.style.transform = 'translate(-50%, 100%)';
 	}, 600);
-	toChangeStartWindowBG();
 });
 
 okButton.addEventListener('click', () => {

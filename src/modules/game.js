@@ -31,6 +31,7 @@ function game() {
 			cancelAnimationFrame(animationId2);
 			scoreText.textContent = score;
 			scoreWindow.style.transform = 'translate(-50%, -50%)';
+			toChangeStartWindowBG();
 		};
 		// from toMoveThroughTheWall.js - do it possible to move through the wall for the snake
 		toMoveThroughTheWall(cell);
