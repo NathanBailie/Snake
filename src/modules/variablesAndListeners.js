@@ -13,7 +13,7 @@ let timerWindow = document.querySelector('.timerWindow');
 let container = document.querySelector('.container');
 let mainWraper = document.querySelector('.mainWraper');
 
-// buttons
+// buttons & checkbox
 let startButton = document.querySelector('.startWindow__startButton');
 let settingsButton = document.querySelector('.startWindow__settingsButton');
 let okButton = document.querySelector('.settingsWindow__okButton');
@@ -130,4 +130,6 @@ foodTypes.addEventListener('click', (e) => {
 
 soundCheckbox.addEventListener('click', (e) => {
 	soundSwitcher = e.target.checked;
+	let text = soundSwitcher ? 'Sound is on' : 'Sound if off';
+	soundCheckbox.setAttribute('title', text);
 });
