@@ -1,5 +1,4 @@
-# Name
-Snake
+# Snake
 
 ## Description
 Classic snake game. You can choose the colors of the playing field, the snake and the food. You can also choose the sound with which the snake will eat and the type of food - whether it looks like a square or a circle.
