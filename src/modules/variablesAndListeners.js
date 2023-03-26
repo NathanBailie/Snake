@@ -46,8 +46,6 @@ let snakeColor = 'darkorange';
 let foodColor = 'orangered';
 let foodType = 'Circle';
 
-gameWraper.style.background = fieldColor;
-
 // toStartPlaying();
 
 restartButton.addEventListener('click', () => {
@@ -88,6 +86,7 @@ fieldColors.addEventListener('click', (e) => {
 	if (conditionChecker(e, 'fieldColor')) {
 		let background = getComputedStyle(e.target).getPropertyValue('background');
 		fieldColor = background.match(/linear-gradient.+\)\)/)[0];
+		gameWraper.style.background = fieldColor;
 		activeClassSwitcher(e, fieldColors);
 	};
 });
