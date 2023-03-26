@@ -6,7 +6,7 @@ function toDrawTheMovement() {
 
 	if (head.x === apple.x && head.y === apple.y) {
 		toMove(head, body, dir);
-		soundSwitcher && onPlaySound(`../sounds/sound${numberOfSound}.mp3`);
+		soundSwitcher && onPlaySound(`sounds/sound${numberOfSound}.mp3`);
 	};
 };
 

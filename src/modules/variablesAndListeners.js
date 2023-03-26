@@ -90,7 +90,7 @@ sounds.addEventListener('click', (e) => {
 	if (conditionChecker(e, 'sounds')) {
 		let number = e.target.textContent;
 		numberOfSound = number;
-		onPlaySound(`../sounds/sound${numberOfSound}.mp3`);
+		onPlaySound(`sounds/sound${numberOfSound}.mp3`);
 		activeClassSwitcher(e, sounds);
 	};
 });
