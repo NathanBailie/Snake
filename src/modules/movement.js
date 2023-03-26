@@ -3,8 +3,13 @@ function toDrawTheMovement() {
 	let head = body[0];
 	toMove(head, body, dir);
 	snake.body.pop();
+
 	if (head.x === apple.x && head.y === apple.y) {
 		toMove(head, body, dir);
+
+		if (soundSwitcher) {
+			onPlaySound(`../sounds/sound${numberOfSound}.mp3`);
+		};
 	};
 };
 

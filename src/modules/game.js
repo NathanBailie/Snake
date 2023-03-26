@@ -14,7 +14,7 @@ function game() {
 	drawFood();
 
 	body.forEach((cell, index) => {
-		context.fillStyle = 'darkorange';
+		context.fillStyle = snakeColor;
 		context.fillRect(cell.x, cell.y, cellSize - 1, cellSize - 1);
 
 		if (index === 0 && (cell.x === apple.x && cell.y === apple.y)) {

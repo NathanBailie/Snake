@@ -12,6 +12,8 @@ let container = document.querySelector('.container');
 let mainWraper = document.querySelector('.mainWraper');
 // let startWindowWraper = document.querySelector('.startWindowWraper');
 let settingsButton = document.querySelector('.startWindow__settingsButton');
+let settingWindow = document.querySelector('.settingsWindow');
+let okButton = document.querySelector('.settingsWindow__okButton');
 
 // settings
 let soundCheckbox = document.querySelector('.customCheckbox');
@@ -20,6 +22,7 @@ let fieldColors = document.querySelector('.fieldColor');
 let snakeColors = document.querySelector('.snakeColor');
 let foodColors = document.querySelector('.foodColor');
 let foodTypes = document.querySelector('.foodType');
+let gameWraper = document.querySelector('.gameWraper');
 
 let cellSize;
 let count;
@@ -42,6 +45,8 @@ let fieldColor = 'linear-gradient(220deg, #404040, #413f48)';
 let snakeColor = 'darkorange';
 let foodColor = 'orangered';
 let foodType = 'Circle';
+
+gameWraper.style.background = fieldColor;
 
 // toStartPlaying();
 
@@ -67,7 +72,7 @@ backButton.addEventListener('click', () => {
 });
 
 settingsButton.addEventListener('click', () => {
-	// startWindowWraper.style.transform = 'translateY(-100%)';
+	settingWindow.style.transform = 'translate(-50%, -50%)';
 });
 
 sounds.addEventListener('click', (e) => {
@@ -112,4 +117,8 @@ foodTypes.addEventListener('click', (e) => {
 
 soundCheckbox.addEventListener('click', (e) => {
 	soundSwitcher = e.target.checked;
+});
+
+okButton.addEventListener('click', () => {
+	settingWindow.style.transform = 'translate(-50%, 100%)';
 });
