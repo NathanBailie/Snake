@@ -16,7 +16,7 @@ function onPlaySound(file) {
 function conditionChecker(e, nameOfTheClass) {
 	return e.target.classList.value === '' &&
 		e.target.parentElement.classList.contains(nameOfTheClass);
-}
+};
 
 function activeClassSwitcher(e, array) {
 	for (let elem of array.children) {
@@ -24,4 +24,4 @@ function activeClassSwitcher(e, array) {
 	};
 
 	e.target.classList.add('active');
-}
+};

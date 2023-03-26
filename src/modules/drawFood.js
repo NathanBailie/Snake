@@ -1,5 +1,6 @@
 function drawFood() {
 	context.fillStyle = foodColor;
+
 	if (foodType === 'Circle') {
 		const radius = cellSize / 2;
 		const x = apple.x + radius;

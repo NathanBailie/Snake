@@ -25,12 +25,15 @@
 		display: grid;
 
 		div {
+			border-radius: 5px;
+
 			&:hover {
 				box-shadow: 0px 0px 3px 3px yellow;
 			}
 
 			&.active {
 				box-shadow: 0px 0px 3px 3px lime;
+				border-radius: 15px;
 
 				&:hover {
 					box-shadow: 0px 0px 3px 3px lime;

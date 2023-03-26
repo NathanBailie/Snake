@@ -6,15 +6,11 @@ function toDrawTheMovement() {
 
 	if (head.x === apple.x && head.y === apple.y) {
 		toMove(head, body, dir);
-
-		if (soundSwitcher) {
-			onPlaySound(`../sounds/sound${numberOfSound}.mp3`);
-		};
+		soundSwitcher && onPlaySound(`../sounds/sound${numberOfSound}.mp3`);
 	};
 };
 
 function toMove(head, body, dir) {
-
 	switch (dir) {
 		case 'right':
 			body.unshift({ x: head.x + cellSize, y: head.y });

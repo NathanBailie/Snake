@@ -1,21 +1,29 @@
 "use strict"
 
+// canvas
 let canvas = document.querySelector('canvas');
 let context = canvas.getContext('2d');
+
+// windows
 let scoreWindow = document.querySelector('.scoreWindow');
-let scoreText = document.querySelector('.scoreWindow p');
-let startButton = document.querySelector('.startWindow__startButton');
-let backButton = document.querySelector('.scoreWindow__back');
-let restartButton = document.querySelector('.scoreWindow__restart');
+let settingWindow = document.querySelector('.settingsWindow');
 let timerWindow = document.querySelector('.timerWindow');
+
+// container & wrapers
 let container = document.querySelector('.container');
 let mainWraper = document.querySelector('.mainWraper');
-// let startWindowWraper = document.querySelector('.startWindowWraper');
-let settingsButton = document.querySelector('.startWindow__settingsButton');
-let settingWindow = document.querySelector('.settingsWindow');
-let okButton = document.querySelector('.settingsWindow__okButton');
 
-// settings
+// buttons
+let startButton = document.querySelector('.startWindow__startButton');
+let settingsButton = document.querySelector('.startWindow__settingsButton');
+let okButton = document.querySelector('.settingsWindow__okButton');
+let backButton = document.querySelector('.scoreWindow__back');
+let restartButton = document.querySelector('.scoreWindow__restart');
+
+// text
+let scoreText = document.querySelector('.scoreWindow p');
+
+//  settings
 let soundCheckbox = document.querySelector('.customCheckbox');
 let sounds = document.querySelector('.sounds');
 let fieldColors = document.querySelector('.fieldColor');
@@ -24,6 +32,10 @@ let foodColors = document.querySelector('.foodColor');
 let foodTypes = document.querySelector('.foodType');
 let gameWraper = document.querySelector('.gameWraper');
 
+// from StartWindowBG.js - add one of images to the start window's background
+toChangeStartWindowBG();
+
+// basic data of the game
 let cellSize;
 let count;
 let animationId1;
@@ -36,9 +48,7 @@ let apple;
 // from basicData.js - creating the basic data
 toCreateTheBasicData();
 
-// from StartWindowBG.js - add one of images to the start window's background
-toChangeStartWindowBG();
-
+// basic settings
 let soundSwitcher = false;
 let numberOfSound = 5;
 let fieldColor = 'linear-gradient(220deg, #404040, #413f48)';
@@ -46,7 +56,6 @@ let snakeColor = 'darkorange';
 let foodColor = 'orangered';
 let foodType = 'Circle';
 
-// toStartPlaying();
 
 restartButton.addEventListener('click', () => {
 	toCreateTheBasicData();
@@ -69,6 +78,10 @@ backButton.addEventListener('click', () => {
 	toChangeStartWindowBG();
 });
 
+okButton.addEventListener('click', () => {
+	settingWindow.style.transform = 'translate(-50%, 100%)';
+});
+
 settingsButton.addEventListener('click', () => {
 	settingWindow.style.transform = 'translate(-50%, -50%)';
 });
@@ -82,6 +95,7 @@ sounds.addEventListener('click', (e) => {
 	};
 });
 
+// the code below changes the selected setting in the setting window
 fieldColors.addEventListener('click', (e) => {
 	if (conditionChecker(e, 'fieldColor')) {
 		let background = getComputedStyle(e.target).getPropertyValue('background');
@@ -116,8 +130,4 @@ foodTypes.addEventListener('click', (e) => {
 
 soundCheckbox.addEventListener('click', (e) => {
 	soundSwitcher = e.target.checked;
-});
-
-okButton.addEventListener('click', () => {
-	settingWindow.style.transform = 'translate(-50%, 100%)';
 });

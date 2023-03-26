@@ -26,9 +26,7 @@ function game() {
 			apple.y = getRandomNum(0, 29) * cellSize;
 		};
 
-		if (index !== 0 && index !== 1 && head.x === cell.x && head.y === cell.y
-			// || score === 1
-		) {
+		if (index !== 0 && index !== 1 && head.x === cell.x && head.y === cell.y) {
 			cancelAnimationFrame(animationId1);
 			cancelAnimationFrame(animationId2);
 			scoreText.textContent = score;
