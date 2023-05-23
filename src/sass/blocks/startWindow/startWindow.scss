@@ -4,17 +4,16 @@
 	padding: 15px;
 	background: "url(img/bg/snake7.png) center center / cover no-repeat";
 
+
 	h2 {
 		text-align: center;
 		font-size: 72px;
 		font-family: cursive;
 		font-weight: bold;
-		// color: #0400ff;
-		// color: #c0ff00;
 		color: #bfef00;
 		text-shadow: 3px 3px 1px #b38a9f;
 		letter-spacing: 3px;
-		margin: 0;
+		margin: 120px 0 0;
 	}
 
 	&__startButton,
@@ -44,7 +43,7 @@
 	}
 
 	&__startButton {
-		margin: 120px auto 5px;
+		margin: 30px auto 5px;
 	}
 
 	&__settingsButton {
